@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <extension key="biz.jmaconsulting.corvair" type="module">
   <file>corvair</file>
-  <name>FIXME</name>
-  <description>FIXME</description>
-  <license>FIXME</license>
+  <name>Corsa Customizations</name>
+  <description>Extension handles customizations that were done to Corsa Contributions.</description>
+  <license>AGPL-3.0</license>
   <maintainer>
-    <author>FIXME</author>
-    <email>FIXME@example.com</email>
+    <author>JMA</author>
+    <email>joe.murray@jmaconsulting.biz</email>
   </maintainer>
   <releaseDate>2013-10-04</releaseDate>
   <version>1.0</version>
