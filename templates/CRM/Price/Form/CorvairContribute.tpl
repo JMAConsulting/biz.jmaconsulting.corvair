@@ -1,6 +1,10 @@
 <script type="text/javascript">
 {literal}
 cj(function( ) {
+    cj('#priceset div .membership_amount-content .price-set-row').each(function( index ) {
+      cj(this).attr('id', 'corvair_1' + (index + 1));
+    });	     
+
     cj("#country-1" ).change(function( ) {
 		switch( cj("#country-1").val() ) {
 		case '1228':
