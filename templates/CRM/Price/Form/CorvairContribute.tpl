@@ -2,7 +2,7 @@
 {literal}
 cj(function( ) {
     cj('#priceset div .membership_amount-content .price-set-row').each(function( index ) {
-      cj(this).attr('id', 'corvair_1' + (index + 1));
+      cj(this).attr('id', 'corvair_' + (index + 1));
     });	     
 
     cj("#country-1" ).change(function( ) {
