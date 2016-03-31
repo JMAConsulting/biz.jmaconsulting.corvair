@@ -54,12 +54,6 @@ function corvair_civicrm_buildForm( $formName, &$form ) {
   }
 }
 
-function corvair_civicrm_post( $op, $objectName, $objectId, &$objectRef ) {
-  if ($objectName == "Membership" && $op == "create") {
-    civicrm_api3('CustomValue', 'create', array('entity_id' => $objectId, 'custom_1' => $objectId));
-  }
-}
-
 /**
  * Implementation of hook_civicrm_upgrade
  *
