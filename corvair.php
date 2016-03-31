@@ -47,7 +47,7 @@ function corvair_civicrm_disable() {
 }
 
 function corvair_civicrm_buildForm( $formName, &$form ) {
-  if ($formName == 'CRM_Contribute_Form_Contribution_Main' && $form->getVar('_id') == 1) {
+  if ($formName == 'CRM_Contribute_Form_Contribution_Main' && ($form->getVar('_id') == 1 || $form->getVar('_id') == 8)) {
     CRM_Core_Region::instance('page-body')->add(array(
         'template' => 'CRM/Price/Form/CorvairContribute.tpl',
       ));
