@@ -67,6 +67,11 @@ function corvair_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
   return _corvair_civix_civicrm_upgrade($op, $queue);
 }
 
+function corvair_civicrm_postSave_civicrm_membership($dao) {
+  civicrm_api3('CustomValue', 'create', array('entity_id' => $dao->id, 'custom_1' => $dao->id));
+}
+
+
 /**
  * Implementation of hook_civicrm_managed
  *
