@@ -54,6 +54,31 @@ function corvair_civicrm_buildForm( $formName, &$form ) {
   }
 }
 
+function getMemberID() {
+  $memberID = CRM_Core_DAO::singleValueQuery("select max(member_id_1) from civicrm_value_membership_info_1");
+  $memberID = $memberID + 1;
+  return $memberID;
+}
+
+function corvair_civicrm_post( $op, $objectName, $objectId, &$objectRef ) {
+  if ($objectName == "Membership" && $op == "create") {
+    $memberID = getMemberID();
+    civicrm_api3('CustomValue', 'create', array('entity_id' => $objectId, 'custom_1' => $memberID));
+  }
+}
+
+function corvair_civicrm_postSave_civicrm_membership($dao) {
+  $memberID = getMemberID();
+  civicrm_api3('CustomValue', 'create', array('entity_id' => $dao->id, 'custom_1' => $memberID));
+}
+
+function corvair_civicrm_postProcess($formName, &$form) {
+  if (($formName == "CRM_Member_Form_Membership") && ($form->_action & CRM_Core_Action::ADD) && !empty($form->_id)) {
+    $memberID = getMemberID();
+    civicrm_api3('CustomValue', 'create', array('entity_id' => $form->_id, 'custom_1' => $memberID));
+  }
+}
+
 /**
  * Implementation of hook_civicrm_upgrade
  *
@@ -66,11 +91,6 @@ function corvair_civicrm_buildForm( $formName, &$form ) {
 function corvair_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
   return _corvair_civix_civicrm_upgrade($op, $queue);
 }
-
-function corvair_civicrm_postSave_civicrm_membership($dao) {
-  civicrm_api3('CustomValue', 'create', array('entity_id' => $dao->id, 'custom_1' => $dao->id));
-}
-
 
 /**
  * Implementation of hook_civicrm_managed
